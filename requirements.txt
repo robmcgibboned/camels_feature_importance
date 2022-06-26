@@ -1,5 +1,7 @@
 joblib
 matplotlib
 numpy
+sklearn
 streamlit
 pyyaml
+

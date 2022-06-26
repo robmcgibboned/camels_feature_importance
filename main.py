@@ -1,8 +1,11 @@
 import joblib
 import matplotlib.pyplot as plt
 import numpy as np
+import sklearn
 import streamlit as st
 import yaml
+
+st.set_page_config(layout="wide")
 
 @st.cache(allow_output_mutation=True)  # Not sure why RF gets mutated
 def load_interpolator(sim, output_feature):
@@ -30,7 +33,7 @@ colors = {
     'stellar_mass': '#FF7F0E',        # Orange
 }
 
-col1, col2, col3, = st.columns([1, 1, 2])
+col1, col2, col3, = st.columns([1, 1, 3])
 
 with col1:
     st.write('CAMELS feature importance')
@@ -83,15 +86,12 @@ with col3:
                 label=proper_names[input_property], 
                 color=colors[input_property])
 
-    # ax.set_title(f'Predicting z=0 {output_feature_proper}')
     # TODO: Plot redshift on x axis
     padding = 0.015 * (np.max(snapshots) - np.min(snapshots))
     ax.set_xlim(np.min(snapshots)-padding, np.max(snapshots)+padding)
-    # TODO: Place loc below figure
-    ax.legend()
+    ax.legend(bbox_to_anchor=(1.02, 1.15), ncol=4)
     ax.set_xlabel('Snapshot', fontsize=14)
     ax.set_ylabel('Feature importance', fontsize=14)
     st.write(fig)
-    # TODO: Change figure size
 # TODO: Install correct sklearn version 0.24.1
 
