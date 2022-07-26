@@ -1,6 +1,7 @@
 import joblib
 import matplotlib.pyplot as plt
 import numpy as np
+# TODO: Install correct sklearn version 0.24.1
 import sklearn
 import streamlit as st
 import yaml
@@ -86,12 +87,19 @@ with col3:
                 label=proper_names[input_property], 
                 color=colors[input_property])
 
-    # TODO: Plot redshift on x axis
+    with open('redshifts.yaml', 'r') as yaml_file:
+        redshifts = yaml.safe_load(yaml_file)
+
     padding = 0.015 * (np.max(snapshots) - np.min(snapshots))
     ax.set_xlim(np.min(snapshots)-padding, np.max(snapshots)+padding)
-    ax.legend(bbox_to_anchor=(1.02, 1.15), ncol=4)
-    ax.set_xlabel('Snapshot', fontsize=14)
+    xticks = np.linspace(np.min(snapshots), np.max(snapshots), 5)
+    xticklabels = [round(redshifts[round(s)], 1) for s in xticks]
+    ax.set_xticks(xticks)
+    ax.set_xticklabels(xticklabels)
+
+    anchor = (1.01, 1.15) if len(input_properties) == 4 else (0.9, 1.15)
+    ax.legend(bbox_to_anchor=anchor, ncol=4)
+    ax.set_xlabel('z', fontsize=14)
     ax.set_ylabel('Feature importance', fontsize=14)
     st.write(fig)
-# TODO: Install correct sklearn version 0.24.1
 
