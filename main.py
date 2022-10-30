@@ -36,7 +36,7 @@ colors = {
     'stellar_mass': '#FF7F0E',        # Orange
 }
 
-st.header('Feature importance when predicting the z=0 properties of [CAMELS](https://camels.readthedocs.io) galaxies - See [this paper](https://arxiv.org/abs/2112.08424) for details')
+st.header('Feature importance when predicting the z=0 properties of [CAMELS](https://camels.readthedocs.io) galaxies - See [this paper](https://github.com/robmcgibboned/camels_feature_importance/blob/main/paper_draft.pdf) for details')
 
 # Creating layout
 row1 = st.columns([1, 3, 2, 3, 1])
