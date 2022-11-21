@@ -1,7 +1,7 @@
 joblib
 matplotlib
 numpy
-sklearn
+scikit-learn
 streamlit
 pyyaml
 
