@@ -1,3 +1,5 @@
+print(help('modules'))
+
 import io
 
 import joblib
